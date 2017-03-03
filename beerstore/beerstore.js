@@ -35,7 +35,7 @@ app.post('/beer/favourites', beerStore.addBeer);
 /**
  * return favourite beer by name
  */
-app.get('/beer/favoutrites/:name', beerStore.getBeer);
+app.get('/beer/favourites/:name', beerStore.getBeer);
 
 /**
  * return favourite beers
