@@ -1,0 +1,14 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: beerfans
+spec:
+  template:
+    metadata:
+      name: beerfans
+    spec:
+      containers:
+      - name: hello
+        image: 'maxsakharov03/beerfans:1.0.0'
+        imagePullPolicy: Always
+      restartPolicy: Never

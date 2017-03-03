@@ -1,0 +1,12 @@
+{
+  "name": "beerfans",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node beerfans.js",
+    "start-debug": "node --inspect beerfans.js"
+  },
+  "dependencies": {
+    "request":  "^2.79.0"
+  }
+}

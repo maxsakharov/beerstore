@@ -1,0 +1,10 @@
+*.log
+*.iml
+*/node_modules/
+
+thumbs.db
+out/
+
+.idea
+.DS_Store
+.bundle/

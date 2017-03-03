@@ -1,0 +1,69 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: beerstore
+spec:
+  ports:
+    - name: http
+      port: 80
+      targetPort: 3000
+      nodePort: 31001
+  selector:
+    app: beerstore
+  type: NodePort
+
+---
+kind: Deployment
+apiVersion: extensions/v1beta1
+metadata:
+  name: beerstore
+  labels:
+    version: '1.0.0'
+spec:
+  replicas: 2
+  strategy:
+    rollingUpdate:
+      maxUnavailable: 50%
+      maxSurge: 30%
+  revisionHistoryLimit: 1
+  selector:
+    matchLabels:
+      app: beerstore
+  template:
+    metadata:
+      name: beerstore
+      labels:
+        app: beerstore
+        version: 1.0.0
+    spec:
+      terminationGracePeriodSeconds: 1
+      containers:
+        - name: beerstore
+          image: 'maxsakharov03/beerstore:1.0.0'
+          imagePullPolicy: Always
+          ports:
+          - name: app-port
+            containerPort: 3000
+          readinessProbe:
+            httpGet:
+              path: /ping
+              port: app-port
+            initialDelaySeconds: 5
+            periodSeconds: 5
+            timeoutSeconds: 1
+          livenessProbe:
+            httpGet:
+              path: /ping
+              port: app-port
+            initialDelaySeconds: 10
+            periodSeconds: 5
+            timeoutSeconds: 1
+          resources:
+            requests:
+              memory: 64Mi
+            limits:
+              memory: 512Mi
+
+
+
