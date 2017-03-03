@@ -28,17 +28,17 @@ app.get('/ping', (req, res) => res.send({"state": "up"}).end());
 app.get('/metrics', metrics.response);
 
 /**
- * return beers available in store
+ * add beer to favourites
  */
 app.post('/beer/favourites', beerStore.addBeer);
 
 /**
- * return beer by given name
+ * return favourite beer by name
  */
 app.get('/beer/favoutrites/:name', beerStore.getBeer);
 
 /**
- * add new beer
+ * return favourite beers
  */
 app.get('/beer/favourites', beerStore.getBeers);
 
@@ -48,7 +48,7 @@ app.get('/beer/favourites', beerStore.getBeers);
 app.get('/beer/sip/:id', beerStore.sip);
 
 /**
- * desribe you beer for your beer
+ * desribe beer for you
  */
 app.get('/description', beerApi.description);
 

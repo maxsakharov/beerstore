@@ -7,7 +7,7 @@ var key = "485f8cb0baf89deffdde8b3af2681a92";
 module.exports.description = function(req, res) {
     var name = req.query.name;
     if (!name) {
-        res.status(400).send({"Error": "No beer name url params"}).end();
+        res.status(400).send({"Error": "No beer name in url params"}).end();
     } else {
         request.get(util.format("%s?key=%s&q=%s&type=beer", url, key, name),
             (err, response, body) => {
